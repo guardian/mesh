@@ -30,6 +30,17 @@ const $make = (el, props = {}, children = []) => {
 	return $el;
 };
 
+$makeBlock = (type, $original) =>
+	$make(
+		'x-a11y-block',
+		{
+			element: $original,
+			style: getMetrics($original),
+			'data-type': type,
+		},
+		getContents($original)
+	);
+
 const $a11ybody = $make('x-a11y-body');
 
 document.body.insertAdjacentElement('beforebegin', $a11ybody);
@@ -37,6 +48,9 @@ document.body.style.opacity = 0.1;
 document.body.style.pointerEvents = 'none';
 
 const getContents = $el => {
+	if ($el.nodeName.toLowerCase() === 'img') {
+		return $el.alt;
+	}
 	if ($el.id) {
 		const $label = document.querySelector(`label[for=${$el.id}]`);
 		if ($label) {
@@ -58,31 +72,26 @@ const getMetrics = $el => {
 	};
 };
 
-$('button, input[type=button]').forEach(element => {
-	const $btn = $make(
-		'x-a11y-button',
-		{ element, style: getMetrics(element) },
-		getContents(element)
-	);
-	$a11ybody.appendChild($btn);
+$('button, input[type=button]').forEach($original => {
+	const $el = $makeBlock('button', $original);
+	$a11ybody.appendChild($el);
 });
 
-$('a').forEach(element => {
-	const $link = $make(
-		'x-a11y-link',
-		{ element, style: getMetrics(element) },
-		getContents(element)
-	);
-	$a11ybody.appendChild($link);
+$('a').forEach($original => {
+	const $el = $makeBlock('link', $original);
+	$a11ybody.appendChild($el);
 });
 
-$('input:not([type=button])').forEach(element => {
-	const $link = $make(
-		'x-a11y-input',
-		{ element, style: getMetrics(element) },
-		getContents(element)
-	);
-	$a11ybody.appendChild($link);
+$('input:not([type=button])').forEach($original => {
+	const $el = $makeBlock('button', $original);
+	$a11ybody.appendChild($el);
+});
+
+$('img').forEach($original => {
+	if ($original.alt) {
+		const $el = $makeBlock('button', $original);
+		$a11ybody.appendChild($el);
+	}
 });
 
 $('h1, h2, h3, h4, h5, h6').forEach(element => {

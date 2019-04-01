@@ -4,10 +4,8 @@ x-a11y-body {
 		Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-x-a11y-button {
+x-a11y-block {
 	display: block;
-	background: yellow;
-	color: black;
 	overflow: visible;
 	display: flex;
 	align-items: center;
@@ -16,33 +14,28 @@ x-a11y-button {
 	min-height: 2em;
 }
 
-x-a11y-link {
-	display: block;
+x-a11y-block[data-type='button'] {
+	background: yellow;
+	color: black;
+}
+
+x-a11y-block[data-type='img'] {
+	background: greenyellow;
+	color: black;
+}
+
+x-a11y-block[data-type='link'] {
 	color: blue;
 	text-decoration: underline;
-	display: flex;
-	align-items: center;
 	justify-content: flex-start;
-	min-width: 5em;
-	min-height: 1em;
 }
 
-x-a11y-text {
-	display: block;
+x-a11y-block[data-type='text'] {
 	color: black;
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
 }
 
-x-a11y-input {
-	display: block;
+x-a11y-block[data-type='input'] {
 	color: black;
 	border: 2px solid;
 	background: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-width: 5em;
-	min-height: 1em;
 }
