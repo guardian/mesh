@@ -12,12 +12,6 @@
 		"scripts": ["background.js"],
 		"persistent": false
 	},
-	"web_accessible_resources": ["yay.mp3"],
-	"browser_action": {},
-	"content_scripts": [
-		{
-			"matches": ["<all_urls>"],
-			"js": ["draggable.js"]
-		}
-	]
+	"web_accessible_resources": ["main.js", "element.js"],
+	"browser_action": {}
 }

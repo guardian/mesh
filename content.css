@@ -1,7 +1,13 @@
+html {
+	background: #fff;
+}
+
 x-a11y-body {
 	position: absolute;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
 		Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	pointer-events: none;
+	font-size: 14px;
 }
 
 x-a11y-block {
@@ -12,6 +18,24 @@ x-a11y-block {
 	justify-content: center;
 	min-width: 5em;
 	min-height: 2em;
+}
+
+x-title {
+	display: block;
+}
+
+x-a11y-block > div {
+	line-height: 1;
+}
+
+x-a11y-block small {
+	font-size: 0.66em;
+	text-decoration: none;
+}
+
+x-a11y-block[data-focus] {
+	background: lime;
+	font-weight: 800;
 }
 
 x-a11y-block[data-type='button'] {
@@ -26,8 +50,10 @@ x-a11y-block[data-type='img'] {
 
 x-a11y-block[data-type='link'] {
 	color: blue;
-	text-decoration: underline;
 	justify-content: flex-start;
+}
+x-a11y-block[data-type='link'] x-title {
+	text-decoration: underline;
 }
 
 x-a11y-block[data-type='text'] {
@@ -38,4 +64,8 @@ x-a11y-block[data-type='input'] {
 	color: black;
 	border: 2px solid;
 	background: #fff;
+}
+
+x-a11y-block[data-type='input-radio']:before {
+	content: '⚬';
 }
